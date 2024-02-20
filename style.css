@@ -1,0 +1,23 @@
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, 40px);
+  gap: 5px;
+}
+
+.safe {
+  background-color: hotpink;
+}
+
+.bomb-exploded {
+  background-color: red;
+}
