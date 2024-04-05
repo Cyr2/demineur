@@ -83,6 +83,7 @@ function initEvent(){
 }
 
 function checkCell(x,y){
+  checkWin();
   if(board[x][y] !== 0) return;
 
   const cell = document.querySelector(`.row:nth-child(${x + 1}) .cell:nth-child(${y + 1})`);
@@ -109,8 +110,6 @@ function checkCell(x,y){
     cellLeft.classList.add('open');
     checkCell(x, y - 1);
   }
-
-  checkWin();
 }
 
 function end(){
@@ -123,6 +122,7 @@ function end(){
 }
 
 function checkWin(){
+  console.log(board);
   let count = 0;
   for(let i = 0; i< boardSize; i++){
     for(let j = 0; j< boardSize; j++){
@@ -131,10 +131,23 @@ function checkWin(){
       }
       if(count === ((boardSize * boardSize) - 10)){
         alert('You Win!');
-        generateBoard();
+        setTimeout(() => {
+          generateBoard();
+        }, 5000);
       }
     }
   }
 }
+
+document.addEventListener('keypress', (e)=>{
+  if(e.key == " ") {
+    for(let i = 0; i<boardSize; i++) {
+      for(let j = 0; j<boardSize; j++) {
+        if(board[i][j] !== "B") board[i][j] = -1
+      }
+    }
+    checkWin();
+  }
+})
 
 generateBoard();
